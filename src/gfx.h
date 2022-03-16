@@ -9,7 +9,7 @@
 #define FPS 60
 
 #define BALL_RADIUS 10
-#define BALL_VELOCITY_X 10
+#define BALL_VELOCITY_X 15
 #define BALL_VELOCITY_Y 5
 
 #define PADDLE_WIDTH 20
