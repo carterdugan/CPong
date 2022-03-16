@@ -26,8 +26,8 @@ void pongBall_UpdatePosition(pongBall* pong) {
 	sfCircleShape_setPosition(pong->shape, (sfVector2f){pong->x, pong->y});
 }
 
-void pongBall_SetColor(unsigned char red, unsigned char green, unsigned char blue) {
-
+void pongBall_SetColor(pongBall ball, unsigned char red, unsigned char green, unsigned char blue) {
+	sfCircleShape_setFillColor(ball.shape, (sfColor){red, green, blue, 255});
 }
 
 
@@ -47,6 +47,6 @@ void pongPaddle_UpdatePosition(pongPaddle* pad) {
 	sfRectangleShape_setPosition(pad->shape, (sfVector2f){pad->x, pad->y});
 }
 
-void pongPaddle_SetColor(unsigned char red, unsigned char green, unsigned char blue) {
-	
+void pongPaddle_SetColor(pongPaddle rect, unsigned char red, unsigned char green, unsigned char blue) {
+	sfRectangleShape_setFillColor(rect.shape, (sfColor){red, green, blue, 255});	
 }

@@ -40,7 +40,7 @@ typedef struct {
 
 pongBall pongBall_Create(int x, int y);
 void pongBall_UpdatePosition(pongBall* pong);
-void pongBall_SetColor(unsigned char red, unsigned char green, unsigned char blue);
+void pongBall_SetColor(pongBall ball, unsigned char red, unsigned char green, unsigned char blue);
 
 
 typedef struct {
@@ -56,6 +56,6 @@ typedef struct {
 
 pongPaddle pongPaddle_Create(int x, int y);
 void pongPaddle_UpdatePosition(pongPaddle* pong);
-void pongPaddle_SetColor(unsigned char red, unsigned char green, unsigned char blue);
+void pongPaddle_SetColor(pongPaddle rect, unsigned char red, unsigned char green, unsigned char blue);
 
 #endif
