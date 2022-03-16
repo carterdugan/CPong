@@ -33,19 +33,6 @@ void pongGame_Game(pongWindow* window) {
 		if(sfKeyboard_isKeyPressed(sfKeyDown))
 			player2.y += player2.velocity;
 
-		// Clear the screen
-		sfRenderWindow_clear(window->sfmlWindow, sfBlack);
-
-		// Draw the paddles and the ball
-		sfRenderWindow_drawRectangleShape(window->sfmlWindow, player1.shape, NULL);
-		sfRenderWindow_drawRectangleShape(window->sfmlWindow, player2.shape, NULL);
-		sfRenderWindow_drawCircleShape(window->sfmlWindow, pong.shape, NULL);
-
-		// Update positions of paddle and ball
-		pongPaddle_UpdatePosition(&player1);
-		pongPaddle_UpdatePosition(&player2);
-		pongBall_UpdatePosition(&pong);
-
 		// **************************************************
 		// Check for collision between ball and the paddles *
 		// **************************************************
@@ -98,6 +85,20 @@ void pongGame_Game(pongWindow* window) {
 		// Check for collisions with walls
 		if(pong.y + pong.radius >= WINDOW_HEIGHT || pong.y - pong.radius <= 0)
 			pong.velocityY = -pong.velocityY;
+
+
+		// Update positions of paddle and ball
+		pongPaddle_UpdatePosition(&player1);
+		pongPaddle_UpdatePosition(&player2);
+		pongBall_UpdatePosition(&pong);
+
+		// Clear the screen
+		sfRenderWindow_clear(window->sfmlWindow, sfBlack);
+
+		// Draw the paddles and the ball
+		sfRenderWindow_drawRectangleShape(window->sfmlWindow, player1.shape, NULL);
+		sfRenderWindow_drawRectangleShape(window->sfmlWindow, player2.shape, NULL);
+		sfRenderWindow_drawCircleShape(window->sfmlWindow, pong.shape, NULL);
 
 		// Update the window
 		sfRenderWindow_display(window->sfmlWindow);
