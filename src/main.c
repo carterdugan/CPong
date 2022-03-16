@@ -47,9 +47,9 @@ int main(void) {
 			player1.y += player1.velocity;
 
 		if(sfKeyboard_isKeyPressed(sfKeyUp))
-			player2.y -= player1.velocity;
+			player2.y -= player2.velocity;
 		if(sfKeyboard_isKeyPressed(sfKeyDown))
-			player2.y += player1.velocity;
+			player2.y += player2.velocity;
 
 		// Clear the screen
 		sfRenderWindow_clear(window, sfBlack);
