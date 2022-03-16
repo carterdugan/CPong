@@ -1,7 +1,10 @@
 #include "gfx.h"
 
 pongWindow pongWindow_Create(sfVideoMode mode) {
-	pongWindow win = {sfRenderWindow_create(mode, "Pong", sfClose | sfResize, NULL)};
+	pongWindow win = {
+		sfRenderWindow_create(mode, "Pong", sfClose | sfResize, NULL),
+		sfFont_createFromFile(PATH_TO_FONT)
+	};
 	sfRenderWindow_setFramerateLimit(win.sfmlWindow, FPS);
 	return win;
 }

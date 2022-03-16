@@ -22,6 +22,10 @@ void pongGame_Game(pongWindow* window) {
 				sfRenderWindow_close(window->sfmlWindow);
 		}
 
+		// Return to main menu
+		if(sfKeyboard_isKeyPressed(sfKeyEscape))
+			break;
+
 		// Handle the users input for moving paddles
 		if(sfKeyboard_isKeyPressed(sfKeyW))
 			player1.y -= player1.velocity;
@@ -107,6 +111,30 @@ void pongGame_Game(pongWindow* window) {
 
 void pongGame_MainMenu(pongWindow* window) {
 
+	// The event for polling user input
+	sfEvent event;
+
+	sfText* text = sfText_create();
+	sfText_setFont(text, window->font);
+	sfText_setString(text, "Press space to play!");
+
+
+	while(sfRenderWindow_isOpen(window->sfmlWindow)) {
+		while(sfRenderWindow_pollEvent(window->sfmlWindow, &event)) {
+			if(event.type == sfEvtClosed)
+				sfRenderWindow_close(window->sfmlWindow);
+		}
+
+		if(sfKeyboard_isKeyPressed(sfKeySpace))
+			pongGame_Game(window);
+
+
+
+		sfRenderWindow_clear(window->sfmlWindow, sfBlack);
+		sfRenderWindow_drawText(window->sfmlWindow, text, NULL);
+		sfRenderWindow_display(window->sfmlWindow);
+
+	}
 }
 
 void pongGame_SettingsMenu(pongWindow* window) {

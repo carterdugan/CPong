@@ -7,6 +7,7 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 480
 #define FPS 60
+#define PATH_TO_FONT "assets/pong_font.TTF"
 
 #define BALL_RADIUS 10
 #define BALL_VELOCITY_X 15
@@ -21,6 +22,7 @@
 
 typedef struct {
 	sfRenderWindow* sfmlWindow;
+	sfFont* font;
 } pongWindow;
 
 pongWindow pongWindow_Create(sfVideoMode mode);
@@ -57,5 +59,16 @@ typedef struct {
 pongPaddle pongPaddle_Create(int x, int y);
 void pongPaddle_UpdatePosition(pongPaddle* pong);
 void pongPaddle_SetColor(pongPaddle rect, unsigned char red, unsigned char green, unsigned char blue);
+
+
+// *************
+// * GUI STUFF *
+// *************
+
+typedef struct {
+
+	char* content;
+
+} pongGuiText;
 
 #endif
