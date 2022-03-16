@@ -1,6 +1,5 @@
 #include <SFML/Graphics.h>
-#include <stdlib.h>
-#include <time.h>
+#include <math.h>
 
 #include "paddle.h"
 #include "ball.h"
@@ -64,24 +63,58 @@ int main(void) {
 		pongPaddle_UpdatePosition(&player2);
 		pongBall_UpdatePosition(&pong);
 
-		// Check for collision between ball and the paddles
-		// This is an incredibly flawed way of doing this, but
-		// it works for the sake of this demonstration as it is
-		// simple and works... for the most part. The alternative
-		// way of doing this would be to have actual collision
-		// detection between the ball and each paddle.
+		// **************************************************
+		// Check for collision between ball and the paddles *
+		// **************************************************
+
+		// Tests are for finding what edges to test against
+		float testX  = pong.x;
+		float testY = pong.y;
+
+		// Distances between X and Y of circle vs rectangle
+		float dx;
+		float dy;
+
+		// Distance between closest points between rect vs circle
+		float distance;
+
+		// Check against rectangles depending on which direction the circle is traveling
+		// Left rectangle
+		if(pong.velocityX < 0) {
+			if(pong.x < player1.x)
+				testX = player1.x;
+			else if(pong.x > player1.x + player1.width)
+				testX = player1.x + player1.width;
+
+			if(pong.y < player1.y)
+				testY = player1.y;
+			else if(pong.y > player1.y + player1.height)
+				testY = player1.y + player1.height;
+		}
+		// Right triangle
+		else {
+			if(pong.x < player2.x)
+				testX = player2.x;
+			else if(pong.x > player2.x + player2.width)
+				testX = player2.x + player2.width;
+
+			if(pong.y < player2.y)
+				testY = player2.y;
+			else if(pong.y > player2.y + player2.height)
+				testY = player2.y + player2.height;
+		}
+
+		dx = pong.x - testX;
+		dy = pong.y - testY;
+		distance = sqrt(dx*dx + dy*dy);
+
+		// Check for collision with rectangles
+		if(distance <= pong.radius)
+			pong.velocityX = -pong.velocityX;
+
+		// Check for collisions with walls
 		if(pong.y + pong.radius >= WINDOW_HEIGHT || pong.y - pong.radius <= 0)
-			pong.velocityY = - pong.velocityY;
-		if (pong.x + pong.radius >= player2.x) {
-			if(pong.y + pong.radius >= player2.y && pong.y - pong.radius <= player2.y + player2.height) {
-				pong.velocityX = - pong.velocityX;
-			}
-		}
-		else if (pong.x - pong.radius <= player1.x + player1.width) {
-			if(pong.y + pong.radius >= player1.y && pong.y - pong.radius <= player1.y + player1.height) {
-				pong.velocityX = - pong.velocityX;
-			}
-		}
+			pong.velocityY = -pong.velocityY;
 
 		// Update the window
 		sfRenderWindow_display(window);
