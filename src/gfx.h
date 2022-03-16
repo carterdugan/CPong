@@ -65,10 +65,5 @@ void pongPaddle_SetColor(pongPaddle rect, unsigned char red, unsigned char green
 // * GUI STUFF *
 // *************
 
-typedef struct {
-
-	char* content;
-
-} pongGuiText;
 
 #endif
