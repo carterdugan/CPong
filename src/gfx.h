@@ -65,5 +65,17 @@ void pongPaddle_SetColor(pongPaddle rect, unsigned char red, unsigned char green
 // * GUI STUFF *
 // *************
 
+typedef struct {
+
+	int x, y, width, height;
+
+	sfRectangleShape* shape;
+
+} pongGuiButton;
+
+pongGuiButton pongGuiButton_Create(int x, int y, int width, int height);
+void pongGuiButton_CheckHover(pongGuiButton button, sfColor color);
+void pongGuiButton_CheckClick(pongGuiButton button, sfColor color);
+void pongGuiButton_SetColor(pongGuiButton button, unsigned char red, unsigned char green, unsigned char blue);
 
 #endif
