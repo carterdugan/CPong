@@ -7,7 +7,6 @@ int main(void) {
 	sfVideoMode mode = {WINDOW_WIDTH, WINDOW_HEIGHT, 32};
 	pongWindow win = pongWindow_Create(mode);
 
-	// pongGame_Game(&win);
 	pongGame_MainMenu(&win);
 
 	return 0;
