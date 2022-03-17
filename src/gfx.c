@@ -53,3 +53,28 @@ void pongPaddle_UpdatePosition(pongPaddle* pad) {
 void pongPaddle_SetColor(pongPaddle rect, unsigned char red, unsigned char green, unsigned char blue) {
 	sfRectangleShape_setFillColor(rect.shape, (sfColor){red, green, blue, 255});	
 }
+
+
+pongGuiButton pongGuiButton_Create(int x, int y, int width, int height) {
+	pongGuiButton button = {
+		x, y, width, height,
+		sfRectangleShape_create()
+	};
+
+	sfRectangleShape_setPosition(button.shape, (sfVector2f){x, y});
+	sfRectangleShape_setSize(button.shape, (sfVector2f){width, height});
+
+	return button;
+}
+
+void pongGuiButton_CheckHover(pongGuiButton button, sfColor color) {
+
+}
+
+void pongGuiButton_CheckClick(pongGuiButton button, sfColor color) {
+
+}
+
+void pongGuiButton_SetColor(pongGuiButton button, unsigned char red, unsigned char green, unsigned char blue) {
+	sfRectangleShape_setFillColor(button.shape, (sfColor){red, green, blue, 255});
+}
