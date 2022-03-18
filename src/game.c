@@ -1,7 +1,5 @@
 #include "game.h"
 
-#include <stdio.h>
-
 void pongGame_Game(pongWindow* window) {
 
 	// The event for polling user input
