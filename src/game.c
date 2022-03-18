@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include <stdio.h>
+
 void pongGame_Game(pongWindow* window) {
 
 	// The event for polling user input
@@ -118,7 +120,6 @@ void pongGame_MainMenu(pongWindow* window) {
 	sfText_setFont(text, window->font);
 	sfText_setString(text, "Press space to play!");
 
-
 	while(sfRenderWindow_isOpen(window->sfmlWindow)) {
 		while(sfRenderWindow_pollEvent(window->sfmlWindow, &event)) {
 			if(event.type == sfEvtClosed)
@@ -127,8 +128,6 @@ void pongGame_MainMenu(pongWindow* window) {
 
 		if(sfKeyboard_isKeyPressed(sfKeySpace))
 			pongGame_Game(window);
-
-
 
 		sfRenderWindow_clear(window->sfmlWindow, sfBlack);
 		sfRenderWindow_drawText(window->sfmlWindow, text, NULL);
