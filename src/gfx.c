@@ -67,12 +67,17 @@ pongGuiButton pongGuiButton_Create(int x, int y, int width, int height) {
 	return button;
 }
 
-void pongGuiButton_CheckHover(pongGuiButton button, sfColor color) {
+bool pongGuiButton_CheckHover(pongWindow window, pongGuiButton button, sfColor color) {
+	int x = sfMouse_getPosition(window.sfmlWindow).x;
+	int y = sfMouse_getPosition(window.sfmlWindow).y;
 
+	return (x >= button.x && x <= button.x + button.width
+		&& y >= button.y && y <= button.y + button.height);
 }
 
-void pongGuiButton_CheckClick(pongGuiButton button, sfColor color) {
-
+bool pongGuiButton_CheckClick(pongWindow window, pongGuiButton button, sfColor color) {
+	return(pongGuiButton_CheckHover(window, button, color)
+		&& sfMouse_isButtonPressed(sfMouseLeft));
 }
 
 void pongGuiButton_SetColor(pongGuiButton button, unsigned char red, unsigned char green, unsigned char blue) {

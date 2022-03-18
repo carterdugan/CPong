@@ -1,6 +1,7 @@
 #ifndef GFX_H
 #define GFX_H
 
+#include <stdbool.h>
 #include <SFML/Graphics.h>
 
 // Some macros for the setting up the window
@@ -74,8 +75,8 @@ typedef struct {
 } pongGuiButton;
 
 pongGuiButton pongGuiButton_Create(int x, int y, int width, int height);
-void pongGuiButton_CheckHover(pongGuiButton button, sfColor color);
-void pongGuiButton_CheckClick(pongGuiButton button, sfColor color);
+bool pongGuiButton_CheckHover(pongWindow window, pongGuiButton button, sfColor color);
+bool pongGuiButton_CheckClick(pongWindow window, pongGuiButton button, sfColor color);
 void pongGuiButton_SetColor(pongGuiButton button, unsigned char red, unsigned char green, unsigned char blue);
 
 #endif
