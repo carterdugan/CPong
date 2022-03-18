@@ -29,8 +29,8 @@ void pongBall_UpdatePosition(pongBall* pong) {
 	sfCircleShape_setPosition(pong->shape, (sfVector2f){pong->x, pong->y});
 }
 
-void pongBall_SetColor(pongBall ball, unsigned char red, unsigned char green, unsigned char blue) {
-	sfCircleShape_setFillColor(ball.shape, (sfColor){red, green, blue, 255});
+void pongBall_SetColor(pongBall* ball, unsigned char red, unsigned char green, unsigned char blue) {
+	sfCircleShape_setFillColor(ball->shape, (sfColor){red, green, blue, 255});
 }
 
 
@@ -50,8 +50,8 @@ void pongPaddle_UpdatePosition(pongPaddle* pad) {
 	sfRectangleShape_setPosition(pad->shape, (sfVector2f){pad->x, pad->y});
 }
 
-void pongPaddle_SetColor(pongPaddle rect, unsigned char red, unsigned char green, unsigned char blue) {
-	sfRectangleShape_setFillColor(rect.shape, (sfColor){red, green, blue, 255});	
+void pongPaddle_SetColor(pongPaddle* rect, unsigned char red, unsigned char green, unsigned char blue) {
+	sfRectangleShape_setFillColor(rect->shape, (sfColor){red, green, blue, 255});	
 }
 
 
@@ -67,19 +67,19 @@ pongGuiButton pongGuiButton_Create(int x, int y, int width, int height) {
 	return button;
 }
 
-bool pongGuiButton_CheckHover(pongWindow window, pongGuiButton button, sfColor color) {
-	int x = sfMouse_getPosition(window.sfmlWindow).x;
-	int y = sfMouse_getPosition(window.sfmlWindow).y;
+bool pongGuiButton_CheckHover(pongWindow* window, pongGuiButton* button, sfColor color) {
+	int x = sfMouse_getPosition((sfWindow*)window->sfmlWindow).x;
+	int y = sfMouse_getPosition((sfWindow*)window->sfmlWindow).y;
 
-	return (x >= button.x && x <= button.x + button.width
-		&& y >= button.y && y <= button.y + button.height);
+	return (x >= button->x && x <= button->x + button->width
+		&& y >= button->y && y <= button->y + button->height);
 }
 
-bool pongGuiButton_CheckClick(pongWindow window, pongGuiButton button, sfColor color) {
+bool pongGuiButton_CheckClick(pongWindow* window, pongGuiButton* button, sfColor color) {
 	return(pongGuiButton_CheckHover(window, button, color)
 		&& sfMouse_isButtonPressed(sfMouseLeft));
 }
 
-void pongGuiButton_SetColor(pongGuiButton button, unsigned char red, unsigned char green, unsigned char blue) {
-	sfRectangleShape_setFillColor(button.shape, (sfColor){red, green, blue, 255});
+void pongGuiButton_SetColor(pongGuiButton* button, unsigned char red, unsigned char green, unsigned char blue) {
+	sfRectangleShape_setFillColor(button->shape, (sfColor){red, green, blue, 255});
 }

@@ -43,7 +43,7 @@ typedef struct {
 
 pongBall pongBall_Create(int x, int y);
 void pongBall_UpdatePosition(pongBall* pong);
-void pongBall_SetColor(pongBall ball, unsigned char red, unsigned char green, unsigned char blue);
+void pongBall_SetColor(pongBall* ball, unsigned char red, unsigned char green, unsigned char blue);
 
 
 typedef struct {
@@ -59,7 +59,7 @@ typedef struct {
 
 pongPaddle pongPaddle_Create(int x, int y);
 void pongPaddle_UpdatePosition(pongPaddle* pong);
-void pongPaddle_SetColor(pongPaddle rect, unsigned char red, unsigned char green, unsigned char blue);
+void pongPaddle_SetColor(pongPaddle* rect, unsigned char red, unsigned char green, unsigned char blue);
 
 
 // *************
@@ -75,8 +75,8 @@ typedef struct {
 } pongGuiButton;
 
 pongGuiButton pongGuiButton_Create(int x, int y, int width, int height);
-bool pongGuiButton_CheckHover(pongWindow window, pongGuiButton button, sfColor color);
-bool pongGuiButton_CheckClick(pongWindow window, pongGuiButton button, sfColor color);
-void pongGuiButton_SetColor(pongGuiButton button, unsigned char red, unsigned char green, unsigned char blue);
+bool pongGuiButton_CheckHover(pongWindow* window, pongGuiButton* button, sfColor color);
+bool pongGuiButton_CheckClick(pongWindow* window, pongGuiButton* button, sfColor color);
+void pongGuiButton_SetColor(pongGuiButton* button, unsigned char red, unsigned char green, unsigned char blue);
 
 #endif
